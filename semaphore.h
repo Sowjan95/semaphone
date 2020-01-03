@@ -10,19 +10,18 @@
 #include <unistd.h>
 #include <errno.h>
 
-#define SHKEY 24601 //shared memeory
+#define SHMKEY 24601 //shared memeory
 #define SEMKEY 24602 //semaphore
 #define SIZE 1000
-
+/*
 union semun {
 	int val;		// Value for SETVAL
 	struct semid_ds *buf;		//Buffer for IPC_STAT, IPC_SET
 	unsigned short *array;	//Array for GETALL, SETALL
 	struct seminfo *__buf;	//Buffer for IPC_INFO (Linux-specific)
 };
-
-//int go();
-int creates();
+*/
+int create();
 int removes();
-int views();
-//int go_write();
+int view();
+//int user_write();
