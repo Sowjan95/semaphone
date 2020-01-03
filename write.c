@@ -29,7 +29,7 @@ int main(){
         return -1;
     }
 
-    fd = open("telephone.txt", O_WRONLY, O_APPEND);
+    fd = open("telephone.txt", O_WRONLY | O_APPEND);
     if (fd < 0){
         printf("error accessing telephone file: %s\n", strerror(errno));
         return -1;
@@ -45,12 +45,12 @@ int main(){
     printf("Your next line:\n");
     fgets(nextLine, SIZE, stdin);
     write(fd, nextLine, strlen(nextLine));
-    close(fd);
 
-    strcpy(&lastLine, nextLine); //update shared memory
-    shmdt(lastLine);
+    strcpy(lastLine, nextLine); //update shared memory
     sb.sem_op = 1;
     semop(sem_id, &sb, 1);
+    shmdt(lastLine);
+    close(fd);
     return 0;
 
 }

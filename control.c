@@ -40,7 +40,7 @@ int view(){
     }
     printf("The story so far:\n");
     char buff[SIZE];
-    while (read(fd, buff, SIZE))
+    while (read(fd, buff, SIZE) > 0)
         printf("%s\n", buff);
     close(fd);
     return 0;
